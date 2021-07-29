@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,9 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public int totalScore;
-    public Text scoreText;
+    Text scoreText;
+
+    private const string TAG_SCORE_UI = "ScoreUIText";
 
     public GameObject gameOver;
 
@@ -17,6 +20,8 @@ public class GameController : MonoBehaviour
     void Start()
     {
         instance = this;
+        scoreText = GameObject.FindWithTag(TAG_SCORE_UI).GetComponent<Text>();
+        totalScore = Int32.Parse(scoreText.text);
     }
 
     public void UpdateScoreText()
