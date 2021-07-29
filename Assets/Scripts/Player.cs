@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
             {
                 if(doubleJump)
                 {
-                    rig.AddForce(new Vector2(0f, JumpForce * 1.5f), ForceMode2D.Impulse);
+                    rig.AddForce(new Vector2(0f, JumpForce * 1f), ForceMode2D.Impulse);
                     doubleJump = false;
                 }
             }
@@ -79,6 +79,12 @@ public class Player : MonoBehaviour
         {
             isJumping = false;
             anim.SetBool("Jump", false);
+        }
+
+        if (collision.gameObject.tag == "Spike")
+        {
+            GameController.instance.ShowGameOver();
+            Destroy(gameObject);
         }
     }
 
