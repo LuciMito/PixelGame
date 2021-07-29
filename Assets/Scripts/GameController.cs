@@ -31,6 +31,6 @@ public class GameController : MonoBehaviour
 
     public void RestartGame(string lvlName)
     {
-        SceneManager.LoadScene("Lvl02");
+        SceneManager.LoadScene(lvlName);
     }
 }
