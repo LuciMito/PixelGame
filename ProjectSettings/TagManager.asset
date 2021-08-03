@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spike
   - ScoreUIText
+  - saw
   layers:
   - Default
   - TransparentFX
