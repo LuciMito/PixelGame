@@ -42,13 +42,16 @@ public class MaskDude : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision col)
+    bool playerDestroyed = false;
+
+    void OnCollisionEnter2D(Collision col)
     {
         if(col.gameObject.tag == "Player")
         {
             float height = col.contacts[0].point.y - headPoint.position.y;
+            Debug.Log(height);
 
-            if(height > 0)
+            if(height > 0 && !playerDestroyed)
             {
                 col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 speed = 0;
@@ -56,7 +59,13 @@ public class MaskDude : MonoBehaviour
                 boxCollider2D.enabled = false;
                 circleCollider2D.enabled = false;
                 rig.bodyType = RigidbodyType2D.Kinematic;
+
                 Destroy(gameObject, 0.33f);
+            }
+            else
+            {
+                GameController.instance.ShowGameOver();
+                Destroy(col.gameObject);
             }
         }
     }
