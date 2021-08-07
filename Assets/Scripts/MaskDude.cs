@@ -44,12 +44,11 @@ public class MaskDude : MonoBehaviour
 
     bool playerDestroyed = false;
 
-    void OnCollisionEnter2D(Collision col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.tag == "Player")
         {
             float height = col.contacts[0].point.y - headPoint.position.y;
-            Debug.Log(height);
 
             if(height > 0 && !playerDestroyed)
             {
